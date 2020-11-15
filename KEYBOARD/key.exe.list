@@ -1,0 +1,113 @@
+EMU8086 GENERATED LISTING. MACHINE CODE <- SOURCE.
+ 
+key.exe -- emu8086 assembler version: 4.08  
+ 
+[ 9/6/2020  --  11:34:11 AM ] 
+ 
+===================================================================================================
+[LINE]     LOC: MACHINE CODE                          SOURCE
+===================================================================================================
+ 
+[   1]        :                                       DATA SEGMENT
+[   2]        :                                       PORTA EQU 00H
+[   3]        :                                       	PCW   EQU 06H
+[   4]        :                                       ENDS
+[   5]        :                                       
+[   6]        :                                       STACK SEGMENT
+[   7]    0000: 00 00 00 00 00 00 00 00 00 00 00 00   DW   128  DUP(0)
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00 00 00 00 00 00 00 00 00 
+                00 00 00 00                         
+[   8]        :                                       ENDS
+[   9]        :                                       
+[  10]        :                                       CODE SEGMENT
+[  11]    0100:                                       START:
+[  12]    0100: B8 00 00                              MOV AX, DATA
+[  13]    0103: 8E D8                                 MOV DS, AX
+[  14]    0105: 8E C0                                 MOV ES, AX
+[  15]        :                                       
+[  16]    0107: BA 06 00                              MOV DX,PCW
+[  17]    010A: B0 80                                 MOV AL,10000000B
+[  18]    010C: EE                                    OUT DX,AL
+[  19]        :                                       
+[  20]    010D: B0 1B                                 MOV AL,27
+[  21]    010F: E8 01 00                              CALL OUTA
+[  22]        :                                       ;MOV AH, 0H
+[  23]        :                                       ;INT 16H
+[  24]        :                                       ;CALL OUTA
+[  25]        :                                       	
+[  26]    0112: F4                                    	HLT
+[  27]    0113:                                       PROC OUTA
+[  28]        :                                       ;PARAMS: AL
+[  29]    0113: 52                                    	PUSH DX
+[  30]    0114: BA 00 00                              	MOV DX,PORTA
+[  31]    0117: EE                                    	OUT DX,AL
+[  32]    0118: 5A                                    	POP DX
+[  33]    0119: C3                                    	RET	
+[  34]        :                                       ENDP OUTA
+[  35]        :                                       CODE ENDS
+[  36]        :                                       END START
+[  37]        :                                       
+ 
+===================================================================================================
+ 
+EXE HEADER - bytes from 0000 to 01FF inclusive.
+
+0000: 4D      -   exe signature (M)
+0001: 5A      -   exe signature (Z)
+0002: 1A      -   bytes on last page (l.byte)
+0003: 01      -   bytes on last page (h.byte)
+0004: 02      -   512 byte pages in file (l.byte)
+0005: 00      -   512 byte pages in file (h.byte)
+0006: 01      -   relocations (l.byte)
+0007: 00      -   relocations (h.byte)
+0008: 20      -   paragraphs in header (l.byte)
+0009: 00      -   paragraphs in header (h.byte)
+000A: 00      -   minimum memory (l.byte)
+000B: 00      -   minimum memory (h.byte)
+000C: FF      -   maximum memory (l.byte)
+000D: FF      -   maximum memory (h.byte)
+000E: 00      -   SS - stack segment (l.byte)
+000F: 00      -   SS - stack segment (h.byte)
+0010: 00      -   SP - stack pointer (l.byte)
+0011: 01      -   SP - stack pointer (h.byte)
+0012: 1E      -   check sum (l.byte)
+0013: AC      -   check sum (h.byte)
+0014: 00      -   IP - instruction pointer (l.byte)
+0015: 00      -   IP - instruction pointer (h.byte)
+0016: 10      -   CS - code segment (l.byte)
+0017: 00      -   CS - code segment (h.byte)
+0018: 1E      -   relocation table adress (l.byte)
+0019: 00      -   relocation table adress (h.byte)
+001A: 00      -   overlay number (l.byte)
+001B: 00      -   overlay number (h.byte)
+001C: 01      -   signature (l.byte)
+001D: 00      -   signature (h.byte)
+001E: 01      -   relocation table - offset inside segment (l.byte)
+001F: 00      -   relocation table - offset inside segment (h.byte)
+0020: 10      -   relocation table - segment anchor (l.byte)
+0021: 00      -   relocation table - segment anchor (h.byte)
+0022 to 01FF  -   reserved relocation area  (00) 
+
+
+
+
+===================================================================================================
